@@ -3,19 +3,33 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
+    "build": "APP_ENV=development nuxt build",
+    "dev": "set APP_ENV=development && nuxt dev --host",
+    "generate": "APP_ENV=development nuxt generate",
+    "preview": "APP_ENV=development nuxt preview",
+    "build-staging": "APP_ENV=staging nuxt build",
+    "staging": "APP_ENV=staging nuxt dev --host",
+    "generate-staging": "APP_ENV=staging nuxt generate",
+    "preview-staging": "APP_ENV=staging nuxt preview",
+    "build-prod": "APP_ENV=production nuxt build",
+    "prod": "APP_ENV=production nuxt dev --host",
+    "generate-prod": "APP_ENV=production nuxt generate",
+    "preview-prod": "APP_ENV=production nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxtjs/i18n": "^10.0.4",
     "nuxt": "^3.18.1",
     "vue": "^3.5.18",
-    "vue-router": "^4.5.1"
+    "vue-router": "^4.5.1",
+    "vuetify": "^3.9.4",
+    "vuetify-nuxt-module": "^0.18.7"
   },
   "engines": {
     "node": ">=22.16.0",
     "npm": ">=10.9.2"
+  },
+  "devDependencies": {
+    "sass-embedded": "^1.90.0"
   }
 }

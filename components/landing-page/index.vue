@@ -1,0 +1,9 @@
+<template>
+  <div>
+    <landing-page-first></landing-page-first>
+    <landing-page-second></landing-page-second>
+    <landing-page-third></landing-page-third>
+    <landing-page-fourth></landing-page-fourth>
+    <landing-page-fifth></landing-page-fifth>
+  </div>
+</template>

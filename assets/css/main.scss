@@ -1,0 +1,20 @@
+@use "vuetify" with (
+  $body-font-family: "Anek Latin"
+);
+
+@import url("https://fonts.googleapis.com/css2?family=Anek+Latin:wght@100..800&display=swap");
+
+a {
+  text-decoration: none;
+}
+
+.font-weight-semibold {
+  font-weight: 600 !important;
+}
+
+.custom-input {
+  .v-field {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+}
