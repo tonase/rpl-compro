@@ -1,26 +1,26 @@
 <template>
-  <div class="bg-tertiary py-16">
+  <div class="bg-tertiary p-mobile">
     <v-row no-gutters justify="center">
-      <v-col cols="10" class="text-center">
-        <div class="text-h6 text-primary mb-6">
+      <v-col cols="12" sm="10" class="text-center">
+        <div class="text-sm-h6 text-primary mb-6">
           Moving your business forward, with our proven track record
         </div>
 
-        <div class="d-flex justify-center text-primary ga-16 mb-12">
-          <div class="d-flex flex-column justify-center mx-10">
-            <div class="text-h1 font-weight-semibold">1.246+</div>
+        <div class="d-flex justify-center text-primary ga-16 mb-6 mb-sm12">
+          <div class="d-flex flex-column justify-center mx-sm-10">
+            <div class="text-h3 text-sm-h1 font-weight-semibold">1.246+</div>
 
-            <div class="text-h6">awards received</div>
+            <div class="text-sm-h6">awards received</div>
           </div>
 
-          <div class="d-flex flex-column justify-center mx-10">
-            <div class="text-h1 font-weight-semibold">2.638+</div>
+          <div class="d-flex flex-column justify-center mx-sm-10">
+            <div class="text-h3 text-sm-h1 font-weight-semibold">2.638+</div>
 
-            <div class="text-h6">packages carried</div>
+            <div class="text-sm-h6">packages carried</div>
           </div>
         </div>
 
-        <div class="text-h6 text-neutralSecondary mb-12">
+        <div class="text-sm-h6 text-neutralSecondary mb-6 mb-sm12">
           and trusted by leading clients nationwide.
         </div>
 

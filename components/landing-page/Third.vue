@@ -1,21 +1,22 @@
 <template>
-  <div class="py-16">
+  <div class="p-mobile">
     <v-row no-gutters justify="center">
-      <v-col cols="10" class="text-center">
-        <div class="text-h3 text-primary mb-2">
+      <v-col cols="12" sm="10" class="text-center">
+        <div class="text-h5 text-sm-h3 text-primary mb-2">
           Driving your business growth for every business need
         </div>
 
-        <div class="text-h6 text-neutralSecondary mb-16">
+        <div class="text-sm-h6 text-neutralSecondary mb-16">
           Our service cover whatever your business industry
           <nuxt-link to="/" class="text-secondary"> learn more </nuxt-link>
         </div>
 
-        <v-row no-gutters justify="center" align="start">
+        <v-row no-gutters justify="center" align="start" class="gr-16">
           <v-col
             v-for="item in items"
             :key="item.icon"
-            cols="4"
+            cols="12"
+            sm="4"
             class="px-8 text-center d-flex flex-column align-center"
           >
             <v-img

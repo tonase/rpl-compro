@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="dialog" width="auto" scroll-strategy="none">
-    <v-card color="#354254EB" width="712" rounded="lg">
+    <v-card color="#354254EB" :width="cardWidth" rounded="lg">
       <div class="d-flex justify-end pa-2">
         <base-btn
           icon="custom:close"
@@ -10,8 +10,8 @@
         ></base-btn>
       </div>
 
-      <div class="text-center text-white mb-8">
-        <div class="text-h3 mb-2">Welcome</div>
+      <div class="text-center text-white mb-8 px-5">
+        <div class="text-h5 text-sm-h3 mb-2">Welcome</div>
 
         <div>
           Login to your given account or
@@ -22,17 +22,17 @@
         </div>
       </div>
 
-      <div class="d-flex flex-column align-center ga-4">
+      <div class="d-flex flex-column align-center ga-4 px-5">
         <base-text-field
           variant="solo"
           placeholder="Enter email address"
-          width="50%"
+          :width="fieldWidth"
         ></base-text-field>
 
         <base-text-field
           variant="solo"
           placeholder="Enter password"
-          width="50%"
+          :width="fieldWidth"
         ></base-text-field>
 
         <base-btn
@@ -49,5 +49,13 @@
 </template>
 
 <script setup lang="ts">
+const { smAndDown } = useDisplay();
 const { dialog, closeDialog } = useLoginDialog();
+
+const cardWidth = computed(() => {
+  return smAndDown.value ? "100%" : "712";
+});
+const fieldWidth = computed(() => {
+  return smAndDown.value ? "100%" : "50%";
+});
 </script>

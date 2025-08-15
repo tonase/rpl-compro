@@ -2,6 +2,8 @@
   "menu": {
     "about": "About",
     "service": "Service",
-    "contact": "Contact"
+    "contact": "Contact",
+    "tracking": "Tracking",
+    "privacyPolicy": "Privacy Policy"
   }
 }

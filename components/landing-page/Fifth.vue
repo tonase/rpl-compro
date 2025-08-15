@@ -1,24 +1,24 @@
 <template>
-  <div class="bg-white py-16">
+  <div class="bg-white p-mobile">
     <v-row no-gutters justify="center">
-      <v-col cols="10" class="text-center">
-        <div class="text-h3 text-primary mb-4">Get in touch</div>
+      <v-col cols="12" sm="10" class="text-center">
+        <div class="text-h5 text-sm-h3 text-primary mb-4">Get in touch</div>
 
-        <div class="text-h6 text-neutralSecondary mb-8">
+        <div class="text-sm-h6 text-neutralSecondary mb-8">
           Send us your inquiry and we’ll get back to you soon!
         </div>
 
         <v-row no-gutters justify="center">
-          <v-col cols="10">
+          <v-col cols="12" sm="10">
             <v-row no-gutters class="gr-5 mb-5">
-              <v-col cols="6" class="pr-5">
+              <v-col cols="12" sm="6" class="pr-sm-5">
                 <base-text-field
                   color="primary"
                   placeholder="Enter your name"
                 ></base-text-field>
               </v-col>
 
-              <v-col cols="6">
+              <v-col cols="12" sm="6">
                 <base-text-field
                   color="primary"
                   placeholder="Enter email address"

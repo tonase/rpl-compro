@@ -2,6 +2,8 @@
   "menu": {
     "about": "Tentang",
     "service": "Layanan",
-    "contact": "Kontak"
+    "contact": "Kontak",
+    "tracking": "Pelacakan",
+    "privacyPolicy": "Kebijakan Privasi"
   }
 }

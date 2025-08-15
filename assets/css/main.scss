@@ -18,3 +18,37 @@ a {
     overflow: hidden;
   }
 }
+
+.ls-3 {
+  letter-spacing: 3px !important;
+}
+
+.lh-20 {
+  line-height: 20px !important;
+}
+
+.py-container {
+  padding: 100px 0 32px;
+
+  @media (min-width: 1024px) {
+    padding: 100px 0 64px;
+  }
+}
+
+.px-container {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+
+  @media (min-width: 1024px) {
+    padding-left: 100px !important;
+    padding-right: 100px !important;
+  }
+}
+
+.p-mobile {
+  padding: 32px 20px 64px 20px !important;
+
+  @media (min-width: 1024px) {
+    padding: 64px 0 !important;
+  }
+}

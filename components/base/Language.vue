@@ -1,5 +1,5 @@
 <template>
-  <v-menu>
+  <v-menu location="bottom center">
     <template #activator="{ props, isActive }">
       <base-btn
         v-bind="props"

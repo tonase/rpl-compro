@@ -2,14 +2,12 @@
   <div>
     <base-footer-contact></base-footer-contact>
 
-    <v-footer color="primary">
-      <v-row
-        no-gutters
-        justify="center"
-        class="py-6 text-white text-subtitle-2"
-      >
-        <v-col cols="10">
-          <div class="d-flex justify-space-between align-center mb-4">
+    <v-footer color="primary" class="px-container">
+      <div class="w-100 py-8 text-subtitle-2">
+        <div
+          class="d-flex flex-column flex-sm-row justify-space-between align-center mb-4 ga-6"
+        >
+          <nuxt-link :to="localePath('/')">
             <v-img
               src="/Logo-White.png"
               width="120"
@@ -17,54 +15,60 @@
               max-width="120"
               max-height="48"
             ></v-img>
+          </nuxt-link>
 
-            <div class="d-flex ga-6">
-              <nuxt-link
-                v-for="menu in menus"
-                :key="menu.link"
-                :to="menu.link"
-                class="text-white"
-                style="letter-spacing: 3px"
-              >
-                {{ menu.title }}
-              </nuxt-link>
-            </div>
-
-            <div>© all rights reserved</div>
+          <div class="d-flex flex-column flex-sm-row align-center ga-6">
+            <v-list-item
+              v-for="menu in menus"
+              :key="menu.link"
+              :to="localePath(menu.link)"
+              :active="$route.path === localePath(menu.link)"
+              class="text-uppercase ls-3 opacity-100"
+              variant="plain"
+              color="secondary"
+              base-color="white"
+            >
+              {{ menu.title }}
+            </v-list-item>
           </div>
 
-          <div class="text-center text-caption">
-            PT Rajawali Putra Logistik experienced in integrated logistics and
-            transportation services, specializing in the delivery of goods, both
-            locally and internationally throughout Indonesia
-          </div>
-        </v-col>
-      </v-row>
+          <div>© all rights reserved</div>
+        </div>
+
+        <div class="text-center text-caption">
+          PT Rajawali Putra Logistik experienced in integrated logistics and
+          transportation services, specializing in the delivery of goods, both
+          locally and internationally throughout Indonesia
+        </div>
+      </div>
     </v-footer>
   </div>
 </template>
 
 <script setup lang="ts">
-const menus = [
+const { t } = useI18n();
+const localePath = useLocalePath();
+
+const menus = computed(() => [
   {
-    title: "ABOUT",
+    title: t("menu.about"),
     link: "/about",
   },
   {
-    title: "SERVICE",
+    title: t("menu.service"),
     link: "/service",
   },
   {
-    title: "CONTACT",
+    title: t("menu.contact"),
     link: "/contact",
   },
   {
-    title: "TRACKING",
-    link: "/tracking",
+    title: t("menu.tracking"),
+    link: "/?tracking=focus",
   },
   {
-    title: "PRIVACY POLICY",
+    title: t("menu.privacyPolicy"),
     link: "/privacy-policy",
   },
-];
+]);
 </script>
