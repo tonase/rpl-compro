@@ -7,12 +7,13 @@
   >
     <div class="d-flex flex-column align-center pa-5">
       <v-list-item
-        v-for="menu in menus"
+        v-for="(menu, i) in menus"
         :key="menu.link"
         :to="localePath(menu.link)"
         class="text-uppercase ls-3 opacity-100"
         variant="plain"
         color="secondary"
+        :class="{ 'mb-4': i === menus.length - 1 }"
       >
         {{ menu.title }}
       </v-list-item>

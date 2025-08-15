@@ -44,6 +44,7 @@
 
         <v-app-bar-nav-icon
           v-if="!mdAndUp"
+          :color="color"
           @click="emit('toggleDrawer')"
         ></v-app-bar-nav-icon>
       </div>
