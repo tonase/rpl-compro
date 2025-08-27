@@ -1,18 +1,15 @@
 <template>
-  <v-img
-    src="/images/Landing-page-1.jpg"
-    min-height="100vh"
-    cover
-    loading="eager"
-  >
+  <v-img :src="title?.attachment" min-height="100vh" cover loading="eager">
     <div
       class="d-flex flex-column justify-center align-center ga-10 h-100 pa-5"
     >
       <div class="text-center text-white">
-        <div class="text-h4 text-sm-h2 mb-5">Your Trusted Logistic Partner</div>
+        <div class="text-h4 text-sm-h2 mb-5">
+          {{ title?.title?.title }}
+        </div>
 
         <div class="text-sm-h6 font-weight-light">
-          Wherever your business begins, we help you go global
+          {{ title?.title?.description }}
         </div>
       </div>
 
@@ -55,6 +52,8 @@
 <script setup lang="ts">
 const { smAndDown } = useDisplay();
 const { query } = useRoute();
+const { fetchTitle } = useHomeStore();
+const { title } = toRefs(useHomeStore());
 
 const width = computed(() => {
   return smAndDown.value ? "100%" : "50%";
@@ -62,6 +61,19 @@ const width = computed(() => {
 
 const focus = computed(() => {
   return query.tracking === "focus";
+});
+
+const fetchData = async () => {
+  const response = await fetchTitle();
+
+  if (!response.success) {
+    toastResponse(response.success, response.message);
+  }
+};
+
+onMounted(async () => {
+  await nextTick();
+  fetchData();
 });
 </script>
 

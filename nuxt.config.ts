@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   css: ["@/assets/css/main.scss"],
-  modules: ["vuetify-nuxt-module", "@nuxtjs/i18n"],
+  modules: ["vuetify-nuxt-module", "@nuxtjs/i18n", "@pinia/nuxt"],
   vuetify: {
     vuetifyOptions: {
       theme: {
@@ -39,5 +39,12 @@ export default defineNuxtConfig({
       fallbackLocale: defaultLocale,
     },
     vueI18n: "~/i18n.config.ts",
+  },
+  runtimeConfig: {
+    public: {
+      baseUrl: "",
+      baseUrlApi: "",
+      defaultLocale: "",
+    },
   },
 });
