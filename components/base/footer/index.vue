@@ -48,18 +48,19 @@
 <script setup lang="ts">
 const { t } = useI18n();
 const localePath = useLocalePath();
+const { navbar } = useNavbar();
 
 const menus = computed(() => [
   {
-    title: t("menu.about"),
+    title: navbar.value?.content?.about,
     link: "/about",
   },
   {
-    title: t("menu.service"),
+    title: navbar.value?.content?.service,
     link: "/service",
   },
   {
-    title: t("menu.contact"),
+    title: navbar.value?.content?.contact,
     link: "/contact",
   },
   {

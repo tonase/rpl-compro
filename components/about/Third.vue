@@ -3,16 +3,31 @@
     <v-row no-gutters justify="center">
       <v-col cols="12" sm="10" class="text-center text-secondary">
         <div class="text-sm-h3 text-h5 mb-sm-10 mb-5">
-          At RPL, we combine the best quality of our staff plus support from
-          technology and digital systems
+          {{ body?.content?.title }}
         </div>
 
         <div class="text-sm-h5 font-weight-light">
-          One of our key features is the tracking feature: a tool that allows
-          customers to continuously receive updates on the latest location of
-          their containers.
+          {{ body?.content?.description }}
         </div>
       </v-col>
     </v-row>
   </v-sheet>
 </template>
+
+<script setup lang="ts">
+const { fetchBody } = useAboutStore();
+const { body } = toRefs(useAboutStore());
+
+const fetchData = async () => {
+  const response = await fetchBody();
+
+  if (!response.success) {
+    toastResponse(response.success, response.message);
+  }
+};
+
+onMounted(async () => {
+  await nextTick();
+  fetchData();
+});
+</script>

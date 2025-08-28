@@ -6,21 +6,20 @@
       >
         <div>
           <div class="text-h6 text-sm-h4 text-secondary mb-sm-8 mb-4">
-            Integrated logistics and transportation services throughout
-            Indonesia
+            {{ title?.title?.title }}
           </div>
 
-          <div class="text-sm-h6 text-white font-weight-light">
-            PT. Rajawali Putra Logistik is a company focused on providing
-            integrated logistics and transportation services for goods delivery
-            throughout Indonesia. In line with the company’s vision andt
-            mission, it remains committed to delivering the best service,
-            emphasizing professionalism in its operations to achieve sustainable
-            growth and meet stakeholder expectations.
-          </div>
+          <div
+            v-html="title?.title?.shortDescription"
+            class="text-sm-h6 text-white font-weight-light"
+          ></div>
         </div>
 
-        <v-img src="/images/about/About-1.jpg" :width="imgWidth"></v-img>
+        <v-img
+          :src="title?.attachment"
+          :width="imgWidth"
+          :max-width="imgWidth"
+        ></v-img>
       </div>
     </v-col>
   </v-row>
@@ -28,9 +27,24 @@
 
 <script setup lang="ts">
 const { smAndDown } = useDisplay();
+const { fetchTitle } = useAboutStore();
+const { title } = toRefs(useAboutStore());
 
 const imgWidth = computed(() => {
   return smAndDown.value ? "100%" : "50%";
+});
+
+const fetchData = async () => {
+  const response = await fetchTitle();
+
+  if (!response.success) {
+    toastResponse(response.success, response.message);
+  }
+};
+
+onMounted(async () => {
+  await nextTick();
+  fetchData();
 });
 </script>
 
