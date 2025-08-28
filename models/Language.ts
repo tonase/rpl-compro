@@ -1,34 +1,31 @@
 interface ILanguage {
-  code: LanguageCode;
-  label: string;
-  shortLabel: string;
-  icon: string;
+  id: number;
+  description: string;
+  code: string;
+  logo: string;
 }
 
 type LanguageCode = "id" | "en";
 
 class Language {
-  static ENGLISH: ILanguage = {
-    code: "en",
-    label: "English",
-    shortLabel: "EN",
-    icon: "/images/flags/US.png",
-  };
+  id?: number;
+  description?: string;
+  code?: string;
+  logo?: string;
 
-  static INDONESIAN: ILanguage = {
-    code: "id",
-    label: "Bahasa Indonesia",
-    shortLabel: "ID",
-    icon: "/images/flags/ID.png",
-  };
+  constructor(data: Partial<ILanguage>) {
+    this.id = data.id;
+    this.description = data.description;
+    this.code = data.code;
+    this.logo = data.logo;
+  }
 
-  static values: ILanguage[] = [Language.INDONESIAN, Language.ENGLISH];
+  toJSON() {
+    return this;
+  }
 
-  static parse(code: LanguageCode): ILanguage {
-    return (
-      Language.values.find((language) => language.code === code) ||
-      Language.ENGLISH
-    );
+  get lowerCode() {
+    return this.code?.toLowerCase();
   }
 }
 

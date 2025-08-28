@@ -32,26 +32,11 @@ const props = defineProps({
 });
 const emit = defineEmits(["update:modelValue"]);
 
-const { t } = useI18n();
 const localePath = useLocalePath();
+const { menus } = useNavbar();
 
 const drawer = computed({
   get: () => props.modelValue,
   set: (value) => emit("update:modelValue", value),
 });
-
-const menus = computed(() => [
-  {
-    title: t("menu.about"),
-    link: "/about",
-  },
-  {
-    title: t("menu.service"),
-    link: "/service",
-  },
-  {
-    title: t("menu.contact"),
-    link: "/contact",
-  },
-]);
 </script>

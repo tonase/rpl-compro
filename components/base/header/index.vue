@@ -39,7 +39,7 @@
           class="text-caption"
           @click="openDialog"
         >
-          Login
+          {{ navbar?.content?.btnLogin }}
         </base-btn>
 
         <v-app-bar-nav-icon
@@ -54,11 +54,11 @@
 
 <script setup lang="ts">
 const emit = defineEmits(["toggleDrawer"]);
-const { t } = useI18n();
 const localePath = useLocalePath();
 const { openDialog } = useLoginDialog();
 const route = useRoute();
 const { mdAndUp } = useDisplay();
+const { menus, navbar } = useNavbar();
 
 const isScrolled = ref(false);
 const isWhitePages = ref(false);
@@ -93,21 +93,6 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener("scroll", handleScroll);
 });
-
-const menus = computed(() => [
-  {
-    title: t("menu.about"),
-    link: "/about",
-  },
-  {
-    title: t("menu.service"),
-    link: "/service",
-  },
-  {
-    title: t("menu.contact"),
-    link: "/contact",
-  },
-]);
 </script>
 
 <style scoped>

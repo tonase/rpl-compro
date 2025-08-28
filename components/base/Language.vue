@@ -10,7 +10,7 @@
       >
         <template #prepend>
           <v-img
-            :src="selectedLanguage.icon"
+            :src="selectedLanguage?.logo"
             width="16"
             height="16"
             rounded="circle"
@@ -19,7 +19,7 @@
           ></v-img>
         </template>
 
-        {{ selectedLanguage.shortLabel }}
+        {{ selectedLanguage?.code }}
       </base-btn>
     </template>
 
@@ -31,10 +31,10 @@
           color="primary"
         >
           <v-radio
-            v-for="language in Language.values"
-            :key="language.code"
-            :value="language.code"
-            :label="language.label"
+            v-for="language in languages"
+            :key="language.lowerCode"
+            :value="language.lowerCode"
+            :label="language.description"
           >
           </v-radio>
         </v-radio-group>
@@ -44,8 +44,6 @@
 </template>
 
 <script setup lang="ts">
-import { Language } from "~/models/Language";
-
 const props = defineProps({
   color: {
     type: String,
@@ -54,4 +52,19 @@ const props = defineProps({
 });
 
 const { selectedLanguage, selectedLanguageCode } = useLanguage();
+const { fetchLanguages } = useLanguageStore();
+const { languages } = toRefs(useLanguageStore());
+
+const fetchData = async () => {
+  const response = await fetchLanguages();
+
+  if (!response.success) {
+    toastResponse(response.success, response.message);
+  }
+};
+
+onMounted(async () => {
+  await nextTick();
+  fetchData();
+});
 </script>

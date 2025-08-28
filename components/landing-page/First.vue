@@ -17,12 +17,12 @@
         <v-card-title
           class="text-white text-h6 font-weight-light text-center mb-2"
         >
-          Track your order
+          {{ title?.track?.title }}
         </v-card-title>
 
         <v-card-actions>
           <v-text-field
-            placeholder="Enter container number"
+            :placeholder="title?.track?.placeholder"
             color="white"
             variant="solo"
             hide-details="auto"
@@ -39,7 +39,7 @@
                 :rounded="false"
                 class="text-capitalize text-white text-subtitle-1 font-weight-bold"
               >
-                Track
+                {{ title?.track?.btnSearch }}
               </v-btn>
             </template>
           </v-text-field>

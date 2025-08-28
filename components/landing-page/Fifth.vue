@@ -2,10 +2,12 @@
   <div class="bg-white p-mobile">
     <v-row no-gutters justify="center">
       <v-col cols="12" sm="10" class="text-center">
-        <div class="text-h5 text-sm-h3 text-primary mb-4">Get in touch</div>
+        <div class="text-h5 text-sm-h3 text-primary mb-4">
+          {{ contact?.content?.title }}
+        </div>
 
         <div class="text-sm-h6 text-neutralSecondary mb-8">
-          Send us your inquiry and we’ll get back to you soon!
+          {{ contact?.content?.description }}
         </div>
 
         <v-row no-gutters justify="center">
@@ -14,27 +16,27 @@
               <v-col cols="12" sm="6" class="pr-sm-5">
                 <base-text-field
                   color="primary"
-                  placeholder="Enter your name"
+                  :placeholder="contact?.content?.placeholderName"
                 ></base-text-field>
               </v-col>
 
               <v-col cols="12" sm="6">
                 <base-text-field
                   color="primary"
-                  placeholder="Enter email address"
+                  :placeholder="contact?.content?.placeholderEmail"
                 ></base-text-field>
               </v-col>
 
               <v-col cols="12">
                 <base-text-field
                   color="primary"
-                  placeholder="Enter your inquiry subject"
+                  :placeholder="contact?.content?.placeholderSubject"
                 ></base-text-field>
               </v-col>
 
               <v-col cols="12">
                 <v-textarea
-                  placeholder="Enter your message"
+                  :placeholder="contact?.content?.placeholderMessage"
                   color="primary"
                   variant="outlined"
                   hide-details="auto"
@@ -50,7 +52,7 @@
                 height="47"
                 class="text-white font-weight-semibold"
               >
-                Submit
+                {{ contact?.content?.btnContact }}
               </base-btn>
             </div>
           </v-col>
@@ -59,3 +61,21 @@
     </v-row>
   </div>
 </template>
+
+<script setup lang="ts">
+const { fetchContact } = useContactStore();
+const { contact } = toRefs(useContactStore());
+
+const fetchData = async () => {
+  const response = await fetchContact();
+
+  if (!response.success) {
+    toastResponse(response.success, response.message);
+  }
+};
+
+onMounted(async () => {
+  await nextTick();
+  fetchData();
+});
+</script>
