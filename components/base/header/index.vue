@@ -74,20 +74,24 @@ const logo = computed(() => {
 const color = computed(() => {
   return isScrolled.value || isWhitePages.value ? "primary" : "white";
 });
+const checkWhitePages = () => {
+  isWhitePages.value =
+    ["/service", "/contact", "/privacy-policy"]
+      .map((el) => localePath(el))
+      .includes(route.path) && route.path !== localePath("/");
+};
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 80;
 };
 
-watch(route, (val) => {
-  isWhitePages.value =
-    ["/service", "/contact", "/privacy-policy"]
-      .map((el) => localePath(el))
-      .includes(val.path) && val.path !== localePath("/");
+watch(route, () => {
+  checkWhitePages();
 });
 
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
+  checkWhitePages();
 });
 
 onUnmounted(() => {
