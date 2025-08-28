@@ -1,4 +1,4 @@
-interface ILoginItem {
+interface IContentLoginItem {
   lang: string;
   title: string;
   description: string;
@@ -7,7 +7,7 @@ interface ILoginItem {
   btn_login: string;
 }
 
-class LoginItem {
+class ContentLoginItem {
   lang?: string;
   title?: string;
   description?: string;
@@ -15,7 +15,7 @@ class LoginItem {
   placeholderPassword?: string;
   btnLogin?: string;
 
-  constructor(data: Partial<ILoginItem>) {
+  constructor(data: Partial<IContentLoginItem>) {
     this.lang = data.lang;
     this.title = data.title;
     this.description = data.description;
@@ -29,4 +29,4 @@ class LoginItem {
   }
 }
 
-export { type ILoginItem, LoginItem };
+export { type IContentLoginItem, ContentLoginItem };

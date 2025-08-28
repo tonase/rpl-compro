@@ -11,27 +11,25 @@
       </div>
 
       <div class="text-center text-white mb-8 px-5">
-        <div class="text-h5 text-sm-h3 mb-2">Welcome</div>
+        <div class="text-h5 text-sm-h3 mb-2">
+          {{ formLogin?.content?.title }}
+        </div>
 
         <div>
-          Login to your given account or
-          <nuxt-link to="/contact" class="text-secondary">
-            contact us
-          </nuxt-link>
-          to set it for you
+          {{ formLogin?.content?.description }}
         </div>
       </div>
 
       <div class="d-flex flex-column align-center ga-4 px-5">
         <base-text-field
           variant="solo"
-          placeholder="Enter email address"
+          :placeholder="formLogin?.content?.placeholderEmail"
           :width="fieldWidth"
         ></base-text-field>
 
         <base-text-field
           variant="solo"
-          placeholder="Enter password"
+          :placeholder="formLogin?.content?.placeholderPassword"
           :width="fieldWidth"
         ></base-text-field>
 
@@ -41,7 +39,7 @@
           height="48"
           class="mt-4 mb-16 text-white"
         >
-          Login
+          {{ formLogin?.content?.btnLogin }}
         </base-btn>
       </div>
     </v-card>
@@ -51,11 +49,26 @@
 <script setup lang="ts">
 const { smAndDown } = useDisplay();
 const { dialog, closeDialog } = useLoginDialog();
+const { fetchFormLogin } = useLoginStore();
+const { formLogin } = toRefs(useLoginStore());
 
 const cardWidth = computed(() => {
   return smAndDown.value ? "100%" : "712";
 });
 const fieldWidth = computed(() => {
   return smAndDown.value ? "100%" : "50%";
+});
+
+const fetchData = async () => {
+  const response = await fetchFormLogin();
+
+  if (!response.success) {
+    toastResponse(response.success, response.message);
+  }
+};
+
+onMounted(async () => {
+  await nextTick();
+  fetchData();
 });
 </script>

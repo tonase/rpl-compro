@@ -62,25 +62,4 @@ onMounted(async () => {
   await nextTick();
   fetchData();
 });
-
-const items = [
-  {
-    img: "/images/service/Service-3-1.jpg",
-    title: "Professional Team and Services",
-    description:
-      "Your valuable containers are handled by a team that delivers high-standard and professional service.",
-  },
-  {
-    img: "/images/service/Service-3-2.jpg",
-    title: "Integration AND Real-Time Technology",
-    description:
-      "Simplify your container booking and shipment monitoring through innovation and advanced technology.",
-  },
-  {
-    img: "/images/service/Service-3-3.jpg",
-    title: "Customer Care Support",
-    description:
-      "Our dedicated Customer Care team is always ready to assist and provide you with information and support.",
-  },
-];
 </script>
