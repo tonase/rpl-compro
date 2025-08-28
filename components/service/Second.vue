@@ -3,18 +3,18 @@
     <v-col cols="12" sm="10" class="py-sm-16">
       <div class="text-center mb-16">
         <div class="text-sm-h3 text-h5 text-primary mb-4">
-          Your trusted partner every step of the way
+          {{ logisticStep?.title?.title }}
         </div>
 
         <div class="text-sm-h6 text-neutralSecondary">
-          Our service cover your every logistic steps
+          {{ logisticStep?.title?.description }}
         </div>
       </div>
 
       <v-row no-gutters justify="center" class="gr-8">
         <v-col
-          v-for="step in steps"
-          :key="step.icon"
+          v-for="(step, i) in steps"
+          :key="i"
           cols="12"
           sm="2"
           class="position-relative"
@@ -27,18 +27,18 @@
 
           <div v-else class="d-flex flex-column align-center text-center">
             <v-img
-              :src="step.icon"
+              :src="step.attachment"
               width="158"
               height="158"
               class="mb-8"
             ></v-img>
 
             <div class="text-h5 text-primary mb-2">
-              {{ step.title }}
+              {{ step.content?.title }}
             </div>
 
             <div class="text-subtitle-2 text-neutralSecondary lh-20">
-              {{ step.description }}
+              {{ step.content?.shortDescription }}
             </div>
           </div>
         </v-col>
@@ -48,29 +48,29 @@
 </template>
 
 <script setup lang="ts">
-const steps = [
-  {
-    icon: "/images/service/Service-2-1.png",
-    title: "Packing",
-    description: "Supporting your business growth at every stage",
-  },
-  {
-    isDivider: true,
-  },
-  {
-    icon: "/images/service/Service-2-2.png",
-    title: "Delivery",
-    description: "Supporting your business growth at every stage",
-  },
-  {
-    isDivider: true,
-  },
-  {
-    icon: "/images/service/Service-2-3.png",
-    title: "Tracking",
-    description: "Supporting your business growth at every stage",
-  },
-];
+import type { ServiceItem } from "~/models/ServiceItem";
+
+const { fetchLogisticStep } = useServiceStore();
+const { logisticStep } = toRefs(useServiceStore());
+
+const steps = computed(() => {
+  return logisticStep.value?.contents?.flatMap((item, idx, arr) =>
+    idx < arr.length - 1 ? [item, { isDivider: true }] : [item]
+  ) as (ServiceItem & { isDivider: boolean })[];
+});
+
+const fetchData = async () => {
+  const response = await fetchLogisticStep();
+
+  if (!response.success) {
+    toastResponse(response.success, response.message);
+  }
+};
+
+onMounted(async () => {
+  await nextTick();
+  fetchData();
+});
 </script>
 
 <style scoped lang="scss">
